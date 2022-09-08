@@ -4,4 +4,6 @@ class Trip < ApplicationRecord
     has_many :gears
 
     belongs_to :location
+
+    validates :date, presence: true
 end

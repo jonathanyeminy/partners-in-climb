@@ -2,6 +2,9 @@ class Climber < ApplicationRecord
     has_many :climber_trips
     has_many :trips, through: :climber_trips
 
-    validates :first_name, presence: true
-    validates :last_name, presence: true
+    validates :email, presence: true
+    validates :email, email: true
+    validates :emails, uniqueness: { case_sensitive: false }, allow_blank: true
+
+    has_secure_password
 end

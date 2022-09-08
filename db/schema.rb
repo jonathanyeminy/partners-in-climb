@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_140205) do
+ActiveRecord::Schema.define(version: 2022_09_08_164300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2022_09_08_140205) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "phone"
+    t.string "profile_photo"
   end
 
   create_table "gears", force: :cascade do |t|
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 2022_09_08_140205) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
     t.index ["location_id"], name: "index_trips_on_location_id"
   end
 
