@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
     skip_before_action :authorize, only: [:create]
 
     def create 
-        climber = Climber.find_by(name: params[:name])
+        climber = Climber.find_by(email: params[:email])
   
         if climber&.authenticate(params[:password])
             session[:climber_id] = climber.id 

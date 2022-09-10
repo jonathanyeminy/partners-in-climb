@@ -6,4 +6,5 @@ class Trip < ApplicationRecord
     belongs_to :location
 
     validates :date, presence: true
+    validates :location, presence: true
 end

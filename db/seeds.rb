@@ -5,10 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-gregb = Climber.create(first_name: "Greg", last_name: "Blass", username: "Craig Blasted")
-jonathany = Climber.create(first_name: "Jonathan", last_name: "Yeminy", username: "Jonny Five" email: "jonathanyeminy@yahoo.com", profile_photo: "https://scontent-lga3-1.xx.fbcdn.net/v/t39.30808-6/274608390_3108541692695598_8952870513431273814_n.jpg?_nc_
-    cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=KcrttARwTpsAX_aDYro&_nc_ht=scontent-lga3-1.xx&oh=00_AT_8XAZX8VXtXBa_5O_4eKos932m-b
-    yqgoHZMelHyFM6Xw&oe=631E1AF9")
+gregb = Climber.create!(first_name: "Greg", last_name: "Blass", email: "craig@blasted.com", password: "password")
+jonathany = Climber.create!(first_name: "Jonathan", last_name: "Yeminy", email: "jonathanyeminy@yahoo.com", password: "password")
+adrienne = Climber.create!(first_name: "Adrienne", last_name: "Halterman", email: "adrienne.halterman@iamsohot.com", password: "imsohot")
+micah = Climber.create!(first_name: "Micah", last_name: "Coolguy", email: "Micah@coolguy.com", password: "password")
+loreto = Climber.create!(first_name: "Loreto", last_name: "Micah", email: "imfrom@chile.com", password: "password")
+michael = Climber.create!(first_name: "Michael", last_name: "Hadida", email: "Michaelhadida@imadj.com", password: "password")
+natan = Climber.create!(first_name: "Natan", last_name: "Segal", email: "Natan@iamdabest.com", password: "password")
+
+
 birdsboro = Location.create(name: "Birdsboro Climbing Quarry", address: "Haycreek Rd, Birdsboro, PA 19508")
 elcap = Location.create(name: "El Capitan", address: "Yosemite National Park")
 tilbury = Location.create(name: "Tilbury", address: "Nanticoke, PA")
+
+trip1 = Trip.create!(date:'2022-09-08', location: elcap)
+trip2 = Trip.create!(date:'2022-10-08', location: tilbury)
+trip3 = Trip.create!(date:'2022-11-08', location: birdsboro)
+trip4 = Trip.create!(date:'2022-12-08', location: tilbury)
+
+gear1 = Gear.create!(name: "Rope - 70M", quantity: 1, trip: trip1, climber: adrienne)
+gear2 = Gear.create!(name: "Quick Draw", quantity: 20, trip: trip1, climber: micah)
+gear3 = Gear.create!(name: "Alpine Draw", quantity: 4, trip: trip1, climber: loreto)
+gear4 = Gear.create!(name: "Carabiner", quantity: 8, trip: trip1, climber: natan)

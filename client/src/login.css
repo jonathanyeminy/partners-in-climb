@@ -1,0 +1,83 @@
+.loginSubContainer {
+    min-width: 35%;
+}
+
+.loginMainContainer {
+    background-color: #f9f9fd;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 40px 1px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.accountView {
+    background-color: #3e87f2;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.inputView {
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.inputStyle {
+    border: none;
+    font-size: 16px;
+}
+
+.inputStyle:focus {
+    outline: none;
+}
+
+.loginBtnView {
+    background-color: #3e87f2;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.loginBtnView:hover {
+    box-shadow: 1px 1px 5px 1px #3e87f2;
+}
+
+.loginBtn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.rememberView {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 105%;
+    margin-top: 15px;
+}

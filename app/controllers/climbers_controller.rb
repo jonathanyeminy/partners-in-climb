@@ -1,8 +1,8 @@
 class ClimbersController < ApplicationController
-    skip_before_action:authorize, only: [:create]
+    skip_before_action :authorize, only: [:create]
 
     def index
-        render json: User.all
+        render json: Climber.all
     end
 
     def create
@@ -28,7 +28,7 @@ class ClimbersController < ApplicationController
     private
 
     def climber_params
-        params.permit( :id, :first_name, :last_name, :email, :password_digest)
+        params.permit( :id, :first_name, :last_name, :email, :password)
     end
 
 end

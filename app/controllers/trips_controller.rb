@@ -1,4 +1,15 @@
 class TripsController < ApplicationController
+    
+    def index
+        trip = Trip.all
+        render json: trip
+    end
+
+    def show
+        trip = Trip.find(params[:id])
+        render json: trip
+    end
+
     def new
         trip = Trip.new
     end
