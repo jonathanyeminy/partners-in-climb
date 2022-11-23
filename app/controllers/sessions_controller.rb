@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
 
     def create 
         climber = Climber.find_by(email: params[:email])
-  
         if climber&.authenticate(params[:password])
             session[:climber_id] = climber.id 
             render json: climber, status: :created
@@ -62,7 +61,6 @@ class SessionsController < ApplicationController
     end
   
     def destroy
-        byebug
         session.delete :climber_id
         head :no_content
     end

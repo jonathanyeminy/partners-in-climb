@@ -4,7 +4,7 @@ import account from './account.svg'
 
 function Login({ setCurrentUser,onSignUp }) {
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
@@ -57,10 +57,10 @@ function Login({ setCurrentUser,onSignUp }) {
             <div className="inputView">
               <input
                 type="text"
-                name="name"
-                placeholder="Username"
+                name="email"
+                placeholder="Email/Username"
                 className="inputStyle"
-                value={formData.name}
+                value={formData.email}
                 onChange={handleChange}
               />
             </div>
