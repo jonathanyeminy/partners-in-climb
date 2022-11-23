@@ -41,7 +41,8 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
     return (
         <div>
             {gearForm ? <BringGear tripId={tripId} addGear={(user) => {
-                setTripData(user)
+                debugger
+                setTripData(user.data)
                 setGearForm(false)
             }} />
                 : <div className="detailsContainer">

@@ -16,6 +16,7 @@ const MainPage = ({ tripsData, first_name, profilePhoto, signOut }) => {
     fetch("/trips")
       .then((res) => res.json())
       .then((data) => {
+        debugger
         console.log("trips data",data);
         setTrips([...data.data]);
       });

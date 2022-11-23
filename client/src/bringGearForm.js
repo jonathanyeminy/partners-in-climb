@@ -16,11 +16,13 @@ function BringGear({ tripId, addGear }) {
             
             if (res.ok) {
                 res.json().then((user) => {
+                    debugger
                     console.log("bring gear", user);
                    addGear(user)
                 });
             } else {
                 res.json().then((errors) => {
+
                     console.log(errors);
                     // setErrors(errors.errors);
                 });
@@ -30,14 +32,14 @@ function BringGear({ tripId, addGear }) {
         });
     }
     return (
-        <div className="loginMainContainer" id='login'>
+        <div className="gearMainContainer" id='login'>
             <div className="loginSubContainer">
                 <div className="loginContainer">
                     <p style={{ margin: 0, marginBottom: 15, fontSize: 24 }}>Watcha bringing?</p>
                     <form>
                         <div className="inputView">
                             <input
-                                type="text"
+                                type="number"
                                 name=""
                                 placeholder="qty"
                                 className="inputStyle"

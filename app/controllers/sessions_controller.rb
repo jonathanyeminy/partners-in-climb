@@ -41,9 +41,9 @@ class SessionsController < ApplicationController
             climber: climber,
             trip: trip
         ) 
-        trip.save
+        trip.save!
         
-        render json: trip
+        render json: TripSerializer.new(trip).serialized_json
     end
     def update 
         climber = Climber.find_by(id: session[:climber_id])

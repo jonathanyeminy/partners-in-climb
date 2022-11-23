@@ -8,11 +8,15 @@ class TripSerializer
 
   attribute :organizer do |object|
     climber = object.climber_trips.find_by(organizer: true)
-    {id: climber.climber.id, short_name: climber.climber.first_name}
+    if climber.present?
+      {id: climber.climber.id, short_name: climber.climber.first_name}
+    else
+      {}
+    end
   end
 
   attribute :gears do |object|
-    object.gears.map {|gear| {name: gear.name, quantity: gear.quantity}}
+    object.gears.map {|gear| {name: gear.name, quantity: gear.quantity,owner:  gear.climber.first_name + " " + gear.climber.last_name[0,1]}}
   end
   
 end
