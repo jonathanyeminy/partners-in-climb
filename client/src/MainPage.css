@@ -1,0 +1,74 @@
+.navBar {
+    background-color: #3e87f2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 30px;
+    color: #fff;
+    flex-wrap: wrap
+}
+
+.profilePic {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.tripsBtn {
+    padding: 10px;
+    background-color: #fff;
+    border: none;
+    color: #3e87f2;
+    border-radius: 6px;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.signOutBtn {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tripCards {
+    margin-top: 15;
+    width: 30%;
+    border: 2px solid #3e87f2;
+    border-radius: 6px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.detailBtn {
+    padding: 10px;
+    background-color: #3e87f2;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding-right: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 15px;
+}
+
+.editBtn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bgImg{
+    background-image: url('https://cdn.britannica.com/95/100595-050-55D897A5/El-Capitan-Yosemite-National-Park-California.jpg');
+    background-repeat: no-repeat;
+   background-size: cover;
+   overflow: scroll;
+}

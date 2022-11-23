@@ -1,52 +1,91 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import './MainPage.css'
+import TripDetails from "./tripDetails";
+const MainPage = ({ setCurrentUser, first_name, profilePhoto }) => {
+  const [moreDetails, setMoreDetails] = useState(false)
+  const [trips, setTrips] = useState([])
+  const showDetails = (e) => {
+    setMoreDetails(e)
+    console.log("details", e)
+  }
 
-import Header from "./Header";
-import Search from "./Search";
-import ListingContainer from "./ListingContainer";
-import ListingsForm from "./ListingsForm";
-import ListingDetails from "./ListingDetails";
+  const fetchTrips = () => {
+    fetch("/trips")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("trips data",data);
+        setTrips(data);
+      });
+  };
 
-const MainPage = ({
-  currentUser,
-  setCurrentUser,
-  listings,
-  setListings,
-  searchInput,
-  setSearchInput,
-  searchItems,
-  handleClick,
-  deleteById,
-}) => {
-  //currentUser={currentUser}
-//       //     setCurrentUser={setCurrentUser}
-//       //     setTrips={setTrips}
-//       //     trips={trips}
-//       //     searchInput={searchInput}
-//       //     setSearchInput={setSearchInput}
-//       //     searchTrips={searchTrips}
-//       //     handleClick={handleClick}
-//       //     setShow={setShow}
-//       //     deleteById={deleteById}
+  useEffect(()=> {
+    debugger
+    fetchTrips();
+  }, [])
 
-  //   const handleChange = (item, d) => {
-  //     const ind = cart.indexOf(item);
-  //     const arr = cart;
-  //     arr[ind].amount += d;
-
-  //     if (arr[ind].amount === 0) arr[ind].amount = 1;
-  //     setCart([...arr]);
-  //   };
-
+  console.log(profilePhoto)
   return (
     <div>
-      <Search searchItems={searchItems} searchInput={searchInput} />
-      <ListingContainer
-        listings={listings}
-        deleteById={deleteById}
-        handleClick={handleClick}
-        searchInput={searchInput}
-      />
+      <div className="navBar">
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img src={profilePhoto}
+            className="profilePic" alt="profile" />
+          <h2 style={{ margin: 0, marginLeft: 15 }}>Welcome, {first_name}</h2>
+        </div>
+        <NavLink to="/new-trip-form" className="tripsBtn">Plan a new trip</NavLink>
+        <button className="tripsBtn">My upcoming trips</button>
+        <NavLink className="editBtn" to="/edit-profile-form">Edit Profile</NavLink>
+        <a className="signOutBtn" onClick={() => setCurrentUser(false)}>Sign Out</a>
+      </div>
+      <div style={{ paddingRight: 40, paddingLeft: 40,}}
+      className={`${moreDetails && "bgImg"}`}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h3>{moreDetails ? "Trip Details" : "Upcoming Trips"}</h3>
+          {moreDetails && <div style={{ display: "flex", justifyContent: "center" }}>
+            <button className="detailBtn" onClick={() => setMoreDetails(false)}> Back to Main Page</button>
+          </div>}
+        </div>
+        {!moreDetails && trips.map((e, i) => {
+          debugger
+          return (
+
+            <div key={i} className="tripCards">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div>
+                  <p>
+                    {e.name}
+                  </p>
+                  <p>Organizer:
+                    {e.climber_trips.map((val, ind) => val.organizer &&
+                      <span key={ind}>{val.climber_id}</span>)
+                    }
+                  </p>
+                  <p>
+                    Date: <span>{e.date}</span>
+                  </p>
+                  <p style={{ margin: 0 }}>
+                    Location: <span>{e.location.name}</span>
+                  </p>
+                </div>
+                {/* <div>
+                  <p>organizer
+                    {e.climber_trips.map((val, ind) => val.organizer &&
+                      <span key={ind}>{val.climber_id}</span>)
+                    }
+                  </p>
+                </div> */}
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button className="detailBtn" onClick={() => showDetails(e)}>More details</button>
+              </div>
+            </div>
+          )
+        })
+        }
+        {moreDetails && <TripDetails first_name={first_name} tripDetails={moreDetails} tripId={moreDetails.id} />}
+      </div>
     </div>
   );
 };

@@ -1,54 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import account from './account.svg'
 import './login.css'
+import {useNavigate} from 'react-router-dom'
 
-function Signup({ setCurrentUser, onSignIn }) {
-    const [formData, setFormData] = useState({
-        first_name: "",
-        last_name: "",
-        email: "",
-        phone: "",
-        profile_photo: "",
-        password: ""
+const EditProfileForm = ({ formData,setCurrentUser }) => {
+    const navigate = useNavigate()
+    const [editFormData, setEditFormData] = useState({
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        profile_photo: formData.profile_photo
     })
-    console.log(formData)
-    const [error, setErrors] = useState([])
 
-    console.log("error", error)
     const handleChange = (e) => {
-        console.log("email", e.target)
+        console.log("name", e.target.name)
         console.log("value", e.target.value)
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
+        setEditFormData({
+            ...editFormData,
+            [e.target.name]: e.target.value,
+        });
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        fetch("/climbers", {
-            method: "POST",
+        e.preventDefault();
+        let url = `climber-update/`
+        fetch(url, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(editFormData),
         }).then((res) => {
             if (res.ok) {
                 res.json().then((user) => {
-                    console.log("users", user)
+                    console.log("edituser",user);
                     setCurrentUser(user)
+                   navigate('/')                  
                 });
             } else {
                 res.json().then((errors) => {
-                    console.log("signup", errors.errors)
-                    setErrors(errors.errors)
-                })
+                    console.log(errors);
+                    // setErrors(errors.errors);
+                });
             }
-        })
-    }
-
-    console.log(formData)
+        }).catch((err)=> {
+            console.log(err)
+        });
+    };
+    console.log("editFormdata", editFormData)
     return (
         <div className="loginMainContainer">
             <div className="loginSubContainer">
@@ -56,16 +57,16 @@ function Signup({ setCurrentUser, onSignIn }) {
                     <div className="accountView">
                         <img src={account} alt="" />
                     </div>
-                    <p style={{ margin: 0, marginBottom: 15, fontSize: 24 }}>Sign Up</p>
+                    <p style={{ margin: 0, marginBottom: 15, fontSize: 24 }}>Edit Profile</p>
                     <form>
                         <div className="inputView">
                             <input
                                 type="text"
                                 name="first_name"
                                 placeholder="First name"
-                                value={formData.first_name}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.first_name}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="inputView">
@@ -73,9 +74,9 @@ function Signup({ setCurrentUser, onSignIn }) {
                                 type="text"
                                 name="last_name"
                                 placeholder="Last name"
-                                value={formData.last_name}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.last_name}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="inputView">
@@ -83,57 +84,50 @@ function Signup({ setCurrentUser, onSignIn }) {
                                 type="number"
                                 name="phone"
                                 placeholder="Phone"
-                                value={formData.phone}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.phone}
+                                onChange={handleChange}
                             />
                         </div>
-                        <div className="inputView">
+                        {/* <div className="inputView">
                             <input
                                 type="text"
                                 name="email"
                                 placeholder="Email"
-                                value={formData.email}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.email}
+                                onChange={handleChange}
                             />
-                        </div>
-                        <div className="inputView">
+                        </div> */}
+                        {/* <div className="inputView">
                             <input
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.password}
+                                onChange={handleChange}
                             />
-                        </div>
+                        </div> */}
                         <div className="inputView">
                             <input
                                 type="text"
                                 name="profile_photo"
                                 placeholder="Profile photo"
-                                value={formData.profile_photo}
-                                onChange={handleChange}
                                 className="inputStyle"
+                                value={editFormData.profile_photo}
+                                onChange={handleChange}
                             />
                         </div>
                     </form>
                     <div className="loginBtnView" onClick={handleSubmit}>
-                        <button className="loginBtn" onClick={handleSubmit}>Sign Up</button>
+                        <button className="loginBtn" onClick={handleSubmit}>Save Changes</button>
                     </div>
-                    <div className="rememberView">
-                        <p style={{ margin: 0 }}>
-                            Have an account?{" "}
-                            <a onClick={onSignIn} style={{ color: "#3e87f2", textDecoration: "none" }}>
-                                Sign In
-                            </a>
-                        </p>
-                    </div>
+
                 </div>
             </div>
         </div>
     )
 }
 
-export default Signup;
+export default EditProfileForm
