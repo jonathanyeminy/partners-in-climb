@@ -17,12 +17,11 @@ const MainPage = ({ tripsData, first_name, profilePhoto, signOut }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("trips data",data);
-        setTrips(data);
+        setTrips([...data.data]);
       });
   };
 
   useEffect(()=> {
-    debugger
     fetchTrips();
   }, [])
 
@@ -49,25 +48,22 @@ const MainPage = ({ tripsData, first_name, profilePhoto, signOut }) => {
           </div>}
         </div>
         {!moreDetails && trips.map((e, i) => {
-          debugger
           return (
 
             <div key={i} className="tripCards">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
                   <p>
-                    {e.name}
+                    {e.attributes.name}
                   </p>
-                  <p>Organizer:
-                    {e.climber_trips.map((val, ind) => val.organizer &&
-                      <span key={ind}>{val.climber_id}</span>)
-                    }
+                  <p>Organizer :
+                    {' '}{e.attributes.organizer.short_name}
                   </p>
                   <p>
-                    Date: <span>{e.date}</span>
+                    Date: <span>{e.attributes.date}</span>
                   </p>
                   <p style={{ margin: 0 }}>
-                    Location: <span>{e.location.name}</span>
+                    Location: <span>{e.attributes.location.name}</span>
                   </p>
                 </div>
                 {/* <div>

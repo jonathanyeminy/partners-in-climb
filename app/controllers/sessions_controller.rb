@@ -26,11 +26,11 @@ class SessionsController < ApplicationController
         trip = Trip.find(params[:id])
         trip.climber_trips.create!(
             climber: climber,
-            organizer: true
+            organizer: false
         ) 
-        trip.save
+        trip.save!
         
-        render json: trip
+        render json: TripSerializer.new(trip).serialized_json
     end
     def addGear
         climber = Climber.find_by(id: session[:climber_id])

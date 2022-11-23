@@ -8,7 +8,7 @@ class Trip < ApplicationRecord
     validates :date, presence: true
     validates :location, presence: true
 
-    def organizer
-        climber_trips.find_by(organizer: true).try(:climber)
-      end
+    # def organizer
+    #   climber_trips.find_by(organizer: true).try(:climber)
+    # end
 end

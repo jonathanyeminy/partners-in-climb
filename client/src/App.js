@@ -44,15 +44,6 @@ console.log("data",currentUser)
     .catch((err) => console.log(err))
   }
 
-  const fetchTrips = () => {
-    fetch("/trips")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("trips data",data);
-        setTrips(data);
-      });
-  };
-
   const handleAddTrip = (trip) => {
     setTrips([...trips, trip])
   }

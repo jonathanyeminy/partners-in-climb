@@ -5,10 +5,11 @@ import './tripDetails.css'
 const TripDetails = ({ tripDetails, tripId, first_name }) => {
     const [tripsData, setTripData] = useState(tripDetails)
     const [gearForm, setGearForm] = useState(false)
+
     function addClimberToTrip() {
         let url = `add-climber-to-trip/`
-        let filter = tripsData.climber_trips.find((val) => val.short_name === first_name)
-        console.log("filter", tripsData.climber_trips)
+        let filter = tripsData.attributes.climber_trips.find((val) => val.short_name === first_name)
+        console.log("filter", tripsData.attributes.climber_trips)
         if (!filter) {
 
             fetch(url, {
@@ -19,9 +20,8 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                 body: JSON.stringify({ "id": tripId }),
             }).then((res) => {
                 if (res.ok) {
-                    res.json().then((user) => {
-                        console.log("dsadsa", user)
-                        setTripData(user)
+                    res.json().then((data) => {
+                        setTripData(data.data)
                         alert("Welcome!")
                     });
                 } else {
@@ -37,8 +37,7 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
             alert("You are already on this trip!")
         }
     } 
-    let abc = tripsData.climber_trips.map((val) => console.log(val.short_name))
-    console.log('detail', abc)
+
     return (
         <div>
             {gearForm ? <BringGear tripId={tripId} addGear={(user) => {
@@ -46,17 +45,17 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                 setGearForm(false)
             }} />
                 : <div className="detailsContainer">
-                    <p>Location: <span>{tripsData.location.name} </span></p>
-                    <p>Date: <span>{tripsData.date}</span></p>
-                    <p>Address: <span>{tripsData.location.address}</span></p>
-                    <p>Trippers: {tripsData.climber_trips.map((e, i) => {
+                    <p>Location: <span>{tripsData.attributes.location.name} </span></p>
+                    <p>Date: <span>{tripsData.attributes.date}</span></p>
+                    <p>Address: <span>{tripsData.attributes.location.address}</span></p>
+                    <p>Trippers: {tripsData.attributes.climber_trips.map((e, i) => {
                         return (
-                            <span key={i}>{e.short_name} {i < tripsData.climber_trips.length - 1 && ", "}</span>
+                            <span key={i}>{e.short_name} {i < tripsData.attributes.climber_trips.length - 1 && ", "}</span>
                         )
                     })
                     }</p>
                     <p style={{ margin: 0 }}>Gear:</p>
-                    <p style={{ paddingLeft: 50, margin: 0 }}>{tripsData.gears.map((e, i) => {
+                    <p style={{ paddingLeft: 50, margin: 0 }}>{tripsData.attributes.gears.map((e, i) => {
                         return (
                             <span key={i}>{e.owner} is bringing {e.quantity} {e.name}<br /> </span>
                         )

@@ -1,8 +1,8 @@
 class TripsController < ApplicationController
     
     def index
-        trip = Trip.all.order(date: :asc)
-        render json: trip
+        trips = Trip.all.order(date: :asc)
+        render json: TripSerializer.new(trips).serialized_json
     end
 
     def show
@@ -14,30 +14,18 @@ class TripsController < ApplicationController
         trip = Trip.new
     end
 
-    # def create
-    #     trip = Trip.create!(trip_params)
-    #     render json: trip, status: :ok
-    #     if trip.save
-    #         trip.ClimberTrips.create!(
-    #             climber: current_climber,
-    #             organizer: true
-    #         ) 
-    #    else
-    #     #handle form error
-    #    end
-    # end
-
     def create
-        trip = Trip.create(trip_params)
-        if trip.valid?
-            session[:trip_id] = trip.id
-            render json: trip, status: :created
-        else
-            render json: {errors: trip.errors.full_messages}, status: :unprocessable_entity
+        trip = Trip.new(trip_params)
+        if trip.save!
+            trip.climber_trips.create!(
+                climber: current_climber,
+                organizer: true
+            ) 
+            render json: trip, status: :ok
+
         end
     end
   
-
     private
         def trip_params
             params.require(:trip).permit(
