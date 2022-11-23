@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import './MainPage.css'
 import TripDetails from "./tripDetails";
-const MainPage = ({ setCurrentUser, first_name, profilePhoto }) => {
+
+const MainPage = ({ tripsData, first_name, profilePhoto, signOut }) => {
   const [moreDetails, setMoreDetails] = useState(false)
   const [trips, setTrips] = useState([])
   const showDetails = (e) => {
@@ -37,7 +38,7 @@ const MainPage = ({ setCurrentUser, first_name, profilePhoto }) => {
         <NavLink to="/new-trip-form" className="tripsBtn">Plan a new trip</NavLink>
         <button className="tripsBtn">My upcoming trips</button>
         <NavLink className="editBtn" to="/edit-profile-form">Edit Profile</NavLink>
-        <a className="signOutBtn" onClick={() => setCurrentUser(false)}>Sign Out</a>
+        <a className="signOutBtn" onClick={signOut}>Sign Out</a>
       </div>
       <div style={{ paddingRight: 40, paddingLeft: 40,}}
       className={`${moreDetails && "bgImg"}`}>

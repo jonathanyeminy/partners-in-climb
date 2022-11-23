@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/me", to: "sessions#show"
   post "/login", to: "sessions#create"
   patch "/climber-update", to:"sessions#update"
+  delete "/logout", to: "sessions#destroy"
   patch "/add-climber-to-trip", to: "sessions#addClimber"
   patch "/add-gear-to-trip", to: "sessions#addGear"
 

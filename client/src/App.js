@@ -34,7 +34,24 @@ console.log("data",currentUser)
     });
   }, []);
 
- 
+  const signOut = () => {
+    fetch("/logout", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(() => {setCurrentUser(false)})
+    .catch((err) => console.log(err))
+  }
+
+  const fetchTrips = () => {
+    fetch("/trips")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("trips data",data);
+        setTrips(data);
+      });
+  };
 
   const handleAddTrip = (trip) => {
     setTrips([...trips, trip])
@@ -52,7 +69,7 @@ console.log("data",currentUser)
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={currentUser ? <MainPage profilePhoto={currentUser.profile_photo} first_name={currentUser.first_name} setCurrentUser={(e)=>setCurrentUser(e)}/> : <PageLogin setCurrentUser={(e)=>setCurrentUser(e)} />} />
+        <Route exact path="/" element={currentUser ? <MainPage profilePhoto={currentUser.profile_photo} first_name={currentUser.first_name} tripsData={trips} setCurrentUser={(e)=>setCurrentUser(e)} signOut={signOut}/> : <PageLogin setCurrentUser={(e)=>setCurrentUser(e)} />} />
         <Route exact path="/edit-profile-form" element={<EditProfileForm setCurrentUser={(user)=>setCurrentUser(user)} formData={currentUser}/>} />
         <Route exact path="/new-trip-form" element={<NewTripForm/>} />
       </Routes>

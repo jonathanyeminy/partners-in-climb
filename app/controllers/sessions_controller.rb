@@ -62,6 +62,7 @@ class SessionsController < ApplicationController
     end
   
     def destroy
+        byebug
         session.delete :climber_id
         head :no_content
     end
