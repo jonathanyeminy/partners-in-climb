@@ -45,7 +45,7 @@ function Login({ setCurrentUser,onSignUp }) {
 
   console.log(formData)
   return (
-    <div className="loginMainContainer" id='login'>
+    <div className="loginMainContainer bgImg" id='login' style={{backgroundImage:`url(https://i.imgur.com/IRTPaI2.jpg)`}}>
       <div className="loginSubContainer">
         <div className="loginContainer">
           <div className="accountView">

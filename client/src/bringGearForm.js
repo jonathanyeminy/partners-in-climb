@@ -16,8 +16,7 @@ function BringGear({ tripId, addGear }) {
             
             if (res.ok) {
                 res.json().then((user) => {
-                    debugger
-                    console.log("bring gear", user);
+                                console.log("bring gear", user);
                    addGear(user)
                 });
             } else {
@@ -35,7 +34,7 @@ function BringGear({ tripId, addGear }) {
         <div className="gearMainContainer" id='login'>
             <div className="loginSubContainer">
                 <div className="loginContainer">
-                    <p style={{ margin: 0, marginBottom: 15, fontSize: 24 }}>Watcha bringing?</p>
+                    <p style={{ margin: 0, marginBottom: 15, fontSize: 24 }}>Whatcha bringing?</p>
                     <form>
                         <div className="inputView">
                             <input

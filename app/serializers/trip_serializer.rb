@@ -19,4 +19,8 @@ class TripSerializer
     object.gears.map {|gear| {name: gear.name, quantity: gear.quantity,owner:  gear.climber.first_name + " " + gear.climber.last_name[0,1]}}
   end
   
+  attribute :trip_images do |object|
+    object.trip_images.map {|trip_image| {image_url: trip_image.image}}
+  end
+  
 end
