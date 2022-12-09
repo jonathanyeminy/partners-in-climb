@@ -39,7 +39,7 @@ const MainPage = ({ tripsData, first_name, profilePhoto, signOut }) => {
       <div className="navBar">
         <div style={{ display: "flex", alignItems: "center" }}>
           <img src={profilePhoto}
-            className="profilePic" alt="profile" />
+            className="profilePic" alt="profile pic" />
           <h2 style={{ margin: 0, marginLeft: 15 }}>Welcome, {first_name}</h2>
         </div>
         <NavLink to="/new-trip-form" className="tripsBtn">Plan a new trip</NavLink>
