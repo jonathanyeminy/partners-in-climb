@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { renderMatches } from 'react-router-dom';
 import account from './account.svg'
 import './login.css'
 
@@ -92,7 +93,7 @@ function Signup({ setCurrentUser, onSignIn }) {
                             <input
                                 type="text"
                                 name="email"
-                                placeholder="Email"
+                                placeholder="Email/User Name"
                                 value={formData.email}
                                 onChange={handleChange}
                                 className="inputStyle"

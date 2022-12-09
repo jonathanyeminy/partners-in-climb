@@ -1,12 +1,13 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Router, UNSAFE_RouteContext } from "react-router-dom";
 import PageLogin from "./PageLogin";
 import EditProfileForm from "./EditProfileForm";
 import NewTripForm from "./NewTripForm";
 // import MainPage from "./MainPage";
 import Header from "./Header";
 import MainPage from "./MainPage";
+import MyUpcomingTrips from "./myUpcomingTrips";
 // import MyItems from "./MyItems";
 // import ListingsForm from "./ListingsForm";
 // import ListingDetails from "./ListingDetails";
@@ -63,6 +64,7 @@ console.log("data",currentUser)
         <Route exact path="/" element={currentUser ? <MainPage profilePhoto={currentUser.profile_photo} first_name={currentUser.first_name} tripsData={trips} setCurrentUser={(e)=>setCurrentUser(e)} signOut={signOut}/> : <PageLogin setCurrentUser={(e)=>setCurrentUser(e)} />} />
         <Route exact path="/edit-profile-form" element={<EditProfileForm setCurrentUser={(user)=>setCurrentUser(user)} formData={currentUser}/>} />
         <Route exact path="/new-trip-form" element={<NewTripForm/>} />
+        <Route exact path="/my-upcoming-trips" element={<MyUpcomingTrips/>}/>
       </Routes>
     </BrowserRouter>
   );

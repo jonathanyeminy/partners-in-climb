@@ -67,8 +67,12 @@
 }
 
 .bgImg{
-    background-image: url('https://cdn.britannica.com/95/100595-050-55D897A5/El-Capitan-Yosemite-National-Park-California.jpg');
+    /* background-image: url('https://cdn.britannica.com/95/100595-050-55D897A5/El-Capitan-Yosemite-National-Park-California.jpg'); */
+   
     background-repeat: no-repeat;
    background-size: cover;
    overflow: scroll;
+   width: 100%;
+   min-height: 100vh;
+   
 }

@@ -41,7 +41,7 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
     return (
         <div>
             {gearForm ? <BringGear tripId={tripId} addGear={(user) => {
-                debugger
+                
                 setTripData(user.data)
                 setGearForm(false)
             }} />
@@ -58,7 +58,9 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                     <p style={{ margin: 0 }}>Gear:</p>
                     <p style={{ paddingLeft: 50, margin: 0 }}>{tripsData.attributes.gears.map((e, i) => {
                         return (
+                            <li>
                             <span key={i}>{e.owner} is bringing {e.quantity} {e.name}<br /> </span>
+                            </li>
                         )
 
                     })}
@@ -67,6 +69,10 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                         <button className="detailBtn" onClick={addClimberToTrip} >Join Trip</button>
                         <button className="detailBtn" onClick={() => setGearForm(true)} >Bring Gear</button>
                     </div>
+                    <href className="leaveTrip" >
+                        Leave Trip
+                    </href>
+
                 </div>}
         </div>
     )
