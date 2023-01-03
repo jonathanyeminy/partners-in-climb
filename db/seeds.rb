@@ -21,8 +21,6 @@ red_river_gorge = Location.create(name: "Red River Gorge", address: "74 Sunshine
 red_rocks = Location.create(name: "Red Rocks", address: "1000 Scenic Loop Dr, Las Vegas, NV 89161", image_url: "https://cdn2.apstatic.com/photos/climb/105900824_m")
 puerto_rico = Location.create(name: "Puerto Rico, Cerro las Tetas", address: "3QVF+GFM Vázquez, Salinas, Puerto Rico", image_url: "https://cdn2.apstatic.com/photos/climb/116529792_m")
 rumney = Location.create(name: "Rumney Climbing, New Hampshire", address: "Rumney School District, Rumney, NH 03266", image_url: "https://i.imgur.com/MCC2uA0.png")
-elcap = Location.create(name: "El Capitan", address: "Yosemite National Park")
-tilbury = Location.create(name: "Tilbury", address: "Nanticoke, PA")
 
 # trip1 = Trip.create!(name :'date:'2022-12-08', location: elcap)
 # trip2 = Trip.create!(date:'2022-10-08', location: tilbury)
