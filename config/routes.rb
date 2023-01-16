@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :trips
   resources :locations
   resources :climbers
+  resources :trip_images
 
   get "/me", to: "sessions#show"
   post "/login", to: "sessions#create"

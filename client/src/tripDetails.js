@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import BringGear from "./bringGearForm";
 import './tripDetails.css'
-
+import './login.css'
 const TripDetails = ({ tripDetails, tripId, first_name }) => {
     const [tripsData, setTripData] = useState(tripDetails)
     const [gearForm, setGearForm] = useState(false)
+    const [imageFlag, setImageFlag] = useState(false)
+    const [image, setImage] = useState("")
 
     function addClimberToTrip() {
         let url = `add-climber-to-trip/`
@@ -36,7 +38,32 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
         } else {
             alert("You are already on this trip!")
         }
-    } 
+    }   
+
+    const uploadImages = () =>{
+        debugger
+        fetch("/trip_images", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ "image_url": image, trip_id: tripId }),
+        }).then((res) => {
+            if (res.ok) {
+                res.json().then((data) => {
+                    setTripData(data.data)
+                    alert("Welcome!")
+                });
+            } else {
+                res.json().then((errors) => {
+                    console.log(errors);
+                    // setErrors(errors.errors);
+                });
+            }
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
 
     return (
         <div>
@@ -45,7 +72,14 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                 setTripData(user.data)
                 setGearForm(false)
             }} />
-                : <div className="detailsContainer">
+                : imageFlag ?
+                     <div className="loginContainer" style={{ width: 500}}>
+                        <div className="inputView">
+                            <input className="inputStyle" type="text" onChange={(e) => setImage(e.target.value)} placeholder="Url"/>
+                        </div>
+                        <button className="detailBtn" onClick={uploadImages} >Uplaod Images</button>
+                    
+                    </div> : <div className="detailsContainer">
                     <p>Location: <span>{tripsData.attributes.location.name} </span></p>
                     <p>Date: <span>{tripsData.attributes.date}</span></p>
                     <p>Address: <span>{tripsData.attributes.location.address}</span></p>
@@ -66,6 +100,7 @@ const TripDetails = ({ tripDetails, tripId, first_name }) => {
                     })}
                     </p>
                     <div style={{ display: "flex", justifyContent: "center" }}>
+                        <button className="detailBtn" onClick={() => setImageFlag(true)} >Add Images</button>
                         <button className="detailBtn" onClick={addClimberToTrip} >Join Trip</button>
                         <button className="detailBtn" onClick={() => setGearForm(true)} >Bring Gear</button>
                     </div>
