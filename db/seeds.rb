@@ -22,10 +22,10 @@ red_rocks = Location.create(name: "Red Rocks", address: "1000 Scenic Loop Dr, La
 puerto_rico = Location.create(name: "Puerto Rico, Cerro las Tetas", address: "3QVF+GFM Vázquez, Salinas, Puerto Rico", image_url: "https://cdn2.apstatic.com/photos/climb/116529792_m")
 rumney = Location.create(name: "Rumney Climbing, New Hampshire", address: "Rumney School District, Rumney, NH 03266", image_url: "https://i.imgur.com/MCC2uA0.png")
 
-# trip1 = Trip.create!(name :'date:'2022-12-08', location: elcap)
-# trip2 = Trip.create!(date:'2022-10-08', location: tilbury)
-# trip3 = Trip.create!(date:'2022-11-08', location: birdsboro)
-# trip4 = Trip.create!(date:'2022-12-08', location: tilbury)
+trip1 = Trip.create!(name: 'December in Yosemite', date:'2022-12-08', location: elcap)
+trip2 = Trip.create!(name: 'Quick Tilbury Run', date:'2022-10-08', location: tilbury)
+trip3 = Trip.create!(name: 'B-boro with the homies', date:'2022-11-08', location: birdsboro)
+trip4 = Trip.create!(name: 'Kentucky Jaunt' date:'2022-12-08', location: red_river_gorge)
 
 # gear1 = Gear.create!(name: "Rope - 70M", quantity: 1, trip: trip1, climber: adrienne)
 # gear2 = Gear.create!(name: "Quick Draw", quantity: 20, trip: trip1, climber: micah)
